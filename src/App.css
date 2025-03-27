@@ -1,0 +1,24 @@
+main {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+input {
+  background-color: white;
+  color: black;
+}
+
+@media (prefers-color-scheme: light) {
+  h1 {
+    color: rgb(143, 16, 193);
+  }
+
+  button {
+    background-color: #96ea2e;
+  }
+}
