@@ -1,13 +1,19 @@
-const Transaction = () => {
+import "./Transaction.css";
+
+const Transaction = ({ transaction }) => {
   return (
     <div class="transaction">
       <div className="left">
-        <div className="name">Neuer Samsung Fernseher</div>
-        <div className="description">Es war Zeit für einen neuen Fernseher</div>
+        <div className="name">{transaction.name}</div>
+        <div className="description">{transaction.description}</div>
       </div>
       <div className="right">
-        <div className="price">500€</div>
-        <div className="datetime">18.12.2024 15:30</div>
+        <div
+          className={transaction.price >= 0 ? "price --green" : "price --red"}
+        >
+          {transaction.price} €
+        </div>
+        <div className="datetime">{transaction.time}</div>
       </div>
     </div>
   );

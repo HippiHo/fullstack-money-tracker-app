@@ -1,11 +1,32 @@
 import "./App.css";
 import Transaction from "./components/Transaction";
 
+const transactions = [
+  {
+    name: "Iphone",
+    description: "War im Angebot",
+    price: -400,
+    time: "18.12.2024 15:30",
+  },
+  {
+    name: "Job Neue Webseite",
+    description: "Für Peter Parker",
+    price: 800,
+    time: "16.12.2024 15:30",
+  },
+  {
+    name: "Ladekabel",
+    description: "War nötig",
+    price: -10,
+    time: "12.12.2024 15:30",
+  },
+];
+
 function App() {
   return (
     <main>
       <h1>
-        400<span>,00</span>€
+        400<span>,00</span> €
       </h1>
       <form>
         <div className="basics">
@@ -15,12 +36,12 @@ function App() {
         <div className="description">
           <input type="text" placeholder="Beschreibung" />
         </div>
-        <button type="submit">Neue Transaktion</button>
+        <button type="submit">Neue Transaktion hinzufügen</button>
       </form>
       <div className="transactions">
-        <Transaction />
-        <Transaction />
-        <Transaction />
+        {transactions.map((transaction) => (
+          <Transaction transaction={transaction} />
+        ))}
       </div>
     </main>
   );

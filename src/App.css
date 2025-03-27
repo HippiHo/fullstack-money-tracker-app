@@ -1,16 +1,57 @@
 main {
-  max-width: 360px;
-  margin: 0 auto;
+  max-width: 450px;
+  margin: 30px auto;
+  font-size: 16px;
 }
 
 h1 {
   text-align: center;
   color: white;
+  margin: 0;
 }
 
-input {
-  background-color: white;
+form {
+  margin-top: 20px;
+}
+
+form input {
+  width: 100%;
+  background-color: transparent;
+  color: #ddd;
+  border: 2px solid #30313d;
+  padding: 10px 5px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form input[type="datetime-local"] {
+  color: #777;
+}
+
+form button {
+  width: 100%;
+  margin-top: 5px;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #ddd;
   color: black;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #c2c1c1;
+}
+
+form .basics {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.transactions {
+  margin-top: 15px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -18,7 +59,15 @@ input {
     color: rgb(143, 16, 193);
   }
 
-  button {
-    background-color: #96ea2e;
+  form input {
+    color: black;
+  }
+
+  form button {
+    background-color: #14e514;
+  }
+
+  form button:hover {
+    background-color: #1c1;
   }
 }
