@@ -1,5 +1,6 @@
 import "./App.css";
 import Transaction from "./components/Transaction";
+import { useState } from "react";
 
 const transactions = [
   {
@@ -23,18 +24,38 @@ const transactions = [
 ];
 
 function App() {
+  const [name, setName] = useState("");
+  const [dateTime, setDateTime] = useState("");
+  const [description, setDescription] = useState("");
+
+  const addNewTransaction = () => {};
+
   return (
     <main>
       <h1>
         400<span>,00</span> €
       </h1>
-      <form>
+      <form onSubmit={addNewTransaction}>
         <div className="basics">
-          <input type="text" placeholder={"+200 neuer Samsung Fernseher"} />
-          <input type="datetime-local" />
+          <input
+            type="text"
+            value={name}
+            onChange={(ev) => setName(ev.target.value)}
+            placeholder={"+200 neuer Samsung Fernseher"}
+          />
+          <input
+            type="datetime-local"
+            value={dateTime}
+            onChange={(ev) => setDateTime(ev.target.value)}
+          />
         </div>
         <div className="description">
-          <input type="text" placeholder="Beschreibung" />
+          <input
+            type="text"
+            value={description}
+            onChange={(ev) => setDescription(ev.target.value)}
+            placeholder="Beschreibung"
+          />
         </div>
         <button type="submit">Neue Transaktion hinzufügen</button>
       </form>
