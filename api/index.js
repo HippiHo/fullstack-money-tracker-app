@@ -1,11 +1,16 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
-const port = 4000;
+const port = 4040;
 
-// browser: http://localhost:4000/api/test
+app.use(cors());
 
 app.get("/api/test", (req, res) => {
   res.json({ body: "test ok" });
+});
+
+app.post("/api/transaction", (req, res) => {
+  res.json(req.body);
 });
 
 app.listen(port, () => {

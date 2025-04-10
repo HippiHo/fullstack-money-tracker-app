@@ -28,7 +28,24 @@ function App() {
   const [dateTime, setDateTime] = useState("");
   const [description, setDescription] = useState("");
 
-  const addNewTransaction = () => {};
+  const addNewTransaction = (ev) => {
+    ev.preventDefault();
+    const url = import.meta.env.VITE_REACT_APP_API_URL + "/transaction";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        description,
+        dateTime,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  };
 
   return (
     <main>
@@ -60,8 +77,8 @@ function App() {
         <button type="submit">Neue Transaktion hinzufügen</button>
       </form>
       <div className="transactions">
-        {transactions.map((transaction) => (
-          <Transaction transaction={transaction} />
+        {transactions.map((transaction, index) => (
+          <Transaction transaction={transaction} key={index} />
         ))}
       </div>
     </main>

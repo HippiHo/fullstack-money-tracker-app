@@ -2,7 +2,7 @@ import "./Transaction.css";
 
 const Transaction = ({ transaction }) => {
   return (
-    <div class="transaction">
+    <div className="transaction">
       <div className="left">
         <div className="name">{transaction.name}</div>
         <div className="description">{transaction.description}</div>
