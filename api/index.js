@@ -4,6 +4,7 @@ const app = express();
 const port = 4040;
 
 app.use(cors());
+app.use(express.json());
 
 app.get("/api/test", (req, res) => {
   res.json({ body: "test ok" });
