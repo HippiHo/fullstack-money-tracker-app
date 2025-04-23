@@ -13,7 +13,7 @@ const Transaction = ({ transaction }) => {
         >
           {transaction.price} €
         </div>
-        <div className="datetime">{transaction.time}</div>
+        <div className="datetime">{transaction.dateTime}</div>
       </div>
     </div>
   );

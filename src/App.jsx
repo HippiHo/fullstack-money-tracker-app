@@ -1,32 +1,23 @@
 import "./App.css";
 import Transaction from "./components/Transaction";
-import { useState } from "react";
-
-const transactions = [
-  {
-    name: "Iphone",
-    description: "War im Angebot",
-    price: -400,
-    time: "18.12.2024 15:30",
-  },
-  {
-    name: "Job Neue Webseite",
-    description: "Für Peter Parker",
-    price: 800,
-    time: "16.12.2024 15:30",
-  },
-  {
-    name: "Ladekabel",
-    description: "War nötig",
-    price: -10,
-    time: "12.12.2024 15:30",
-  },
-];
+import { useState, useEffect } from "react";
 
 function App() {
   const [name, setName] = useState("");
   const [dateTime, setDateTime] = useState("");
   const [description, setDescription] = useState("");
+  const [transactions, setTransactions] = useState([]);
+
+  async function getTransactions() {
+    const url = import.meta.env.VITE_REACT_APP_API_URL + "/transactions";
+    const response = await fetch(url);
+    const json = await response.json();
+    return json;
+  }
+
+  useEffect(() => {
+    getTransactions().then((transactions) => setTransactions(transactions));
+  }, []);
 
   const addNewTransaction = (ev) => {
     ev.preventDefault();
@@ -81,6 +72,7 @@ function App() {
           />
         </div>
         <button type="submit">Neue Transaktion hinzufügen</button>
+        {transactions.length}
       </form>
       <div className="transactions">
         {transactions.map((transaction, index) => (
