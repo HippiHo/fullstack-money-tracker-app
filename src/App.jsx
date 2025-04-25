@@ -22,7 +22,7 @@ function App() {
   const addNewTransaction = (ev) => {
     ev.preventDefault();
     const url = import.meta.env.VITE_REACT_APP_API_URL + "/transaction";
-    const price = name.split(" ")[0];
+    const price = name.split(" ")[0].replace(",", ".");
     fetch(url, {
       method: "POST",
       headers: {
@@ -44,10 +44,19 @@ function App() {
       .catch((error) => console.error(error));
   };
 
+  let balance = 0;
+  for (const transaction of transactions) {
+    balance = balance + transaction.price;
+  }
+  balance = balance.toFixed(2);
+  const fraction = balance.split(".")[1];
+  balance = balance.split(".")[0];
+
   return (
     <main>
       <h1>
-        400<span>,00</span> €
+        {balance}
+        <span>{fraction}</span> €
       </h1>
       <form onSubmit={addNewTransaction}>
         <div className="basics">
@@ -72,12 +81,12 @@ function App() {
           />
         </div>
         <button type="submit">Neue Transaktion hinzufügen</button>
-        {transactions.length}
       </form>
       <div className="transactions">
-        {transactions.map((transaction, index) => (
-          <Transaction transaction={transaction} key={index} />
-        ))}
+        {transactions.length > 0 &&
+          transactions.map((transaction, index) => (
+            <Transaction transaction={transaction} key={index} />
+          ))}
       </div>
     </main>
   );

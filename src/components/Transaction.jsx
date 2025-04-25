@@ -9,7 +9,7 @@ const Transaction = ({ transaction }) => {
       </div>
       <div className="right">
         <div
-          className={transaction.price >= 0 ? "price --green" : "price --red"}
+          className={transaction.price > 0 ? "price --green" : "price --red"}
         >
           {transaction.price} €
         </div>
