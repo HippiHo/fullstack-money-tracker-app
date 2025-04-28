@@ -31,6 +31,15 @@ app.get("/api/transactions", async (req, res) => {
   res.json(transactions);
 });
 
+app.delete("api/transaction/:id"),
+  async (req, res) => {
+    const transactionId = req.params.id;
+    console.log(transactionId);
+    // await mongoose.connect(process.env.MONGO_URL);
+    // const transactions = await Transaction.deleteOne({});
+    // res.send("deleted", transactions);
+  };
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

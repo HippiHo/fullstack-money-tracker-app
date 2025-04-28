@@ -44,6 +44,20 @@ function App() {
       .catch((error) => console.error(error));
   };
 
+  const deleteTransaction = (transactionID) => {
+    console.log("ID", transactionID);
+    const url =
+      import.meta.env.VITE_REACT_APP_API_URL + "/transaction/" + transactionID;
+    fetch(url, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        console.log(response);
+        getTransactions();
+      })
+      .catch((error) => console.error(error));
+  };
+
   let balance = 0;
   for (const transaction of transactions) {
     balance = balance + transaction.price;
@@ -85,7 +99,11 @@ function App() {
       <div className="transactions">
         {transactions.length > 0 &&
           transactions.map((transaction, index) => (
-            <Transaction transaction={transaction} key={index} />
+            <Transaction
+              transaction={transaction}
+              key={index}
+              deleteTransaction={deleteTransaction}
+            />
           ))}
       </div>
     </main>

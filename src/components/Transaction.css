@@ -23,6 +23,13 @@
   text-align: right;
 }
 
+.transaction .right .delete-button {
+  cursor: pointer;
+  display: flex;
+  justify-self: right;
+  align-items: center;
+}
+
 .transaction .price.--green {
   color: #1c1;
 }

@@ -1,8 +1,9 @@
 import "./Transaction.css";
+import { FaRegTrashAlt } from "react-icons/fa";
 
-const Transaction = ({ transaction }) => {
+const Transaction = ({ transaction, deleteTransaction }) => {
   return (
-    <div className="transaction">
+    <div className="transaction" id={transaction._id}>
       <div className="left">
         <div className="name">{transaction.name}</div>
         <div className="description">{transaction.description}</div>
@@ -14,6 +15,13 @@ const Transaction = ({ transaction }) => {
           {transaction.price} €
         </div>
         <div className="datetime">{transaction.dateTime}</div>
+        <button
+          className="delete-button"
+          type="button"
+          onClick={() => deleteTransaction(transaction._id)}
+        >
+          <FaRegTrashAlt />
+        </button>
       </div>
     </div>
   );
