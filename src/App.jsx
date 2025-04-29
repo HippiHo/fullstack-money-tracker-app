@@ -54,13 +54,12 @@ function App() {
     fetch(url, {
       method: "DELETE",
     })
-      .then((response) => {
-        console.log(response);
-        response.ok
-          ? getTransactions()
-          : console.error("Item", response.statusText);
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        getTransactions().then((transactions) => setTransactions(transactions));
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error("Error:", error));
   };
 
   let balance = 0;
