@@ -15,12 +15,13 @@ app.get("/api/test", (req, res) => {
 
 app.post("/api/transaction", async (req, res) => {
   await mongoose.connect(process.env.MONGO_URL);
-  const { name, price, description, dateTime } = req.body;
+  const { name, price, description, dateTime, id } = req.body;
   const transaction = await Transaction.create({
     name,
     price,
     description,
     dateTime,
+    id,
   });
   res.json(transaction);
 });
@@ -31,14 +32,14 @@ app.get("/api/transactions", async (req, res) => {
   res.json(transactions);
 });
 
-app.delete("api/transaction/:id"),
-  async (req, res) => {
-    const transactionId = req.params.id;
-    console.log(transactionId);
-    // await mongoose.connect(process.env.MONGO_URL);
-    // const transactions = await Transaction.deleteOne({});
-    // res.send("deleted", transactions);
-  };
+// app.delete("api/transaction/:id"),
+//   async (req, res) => {
+//     const query = { id: req.params.id };
+//     console.log(transactionId);
+//   await mongoose.connect(process.env.MONGO_URL);
+//   const transactions = await Transaction.deleteOne(query);
+//   res.send("deleted", transactions);
+// };
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

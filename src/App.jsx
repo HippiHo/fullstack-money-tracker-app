@@ -1,6 +1,7 @@
 import "./App.css";
 import Transaction from "./components/Transaction";
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [name, setName] = useState("");
@@ -23,6 +24,7 @@ function App() {
     ev.preventDefault();
     const url = import.meta.env.VITE_REACT_APP_API_URL + "/transaction";
     const price = name.split(" ")[0].replace(",", ".");
+    const id = uuidv4();
     fetch(url, {
       method: "POST",
       headers: {
@@ -33,6 +35,7 @@ function App() {
         price,
         description,
         dateTime,
+        id,
       }),
     })
       .then((response) => response.json())
@@ -53,7 +56,9 @@ function App() {
     })
       .then((response) => {
         console.log(response);
-        getTransactions();
+        response.ok
+          ? getTransactions()
+          : console.error("Item", response.statusText);
       })
       .catch((error) => console.error(error));
   };
